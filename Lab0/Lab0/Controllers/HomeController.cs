@@ -36,7 +36,7 @@ namespace Lab0.Controllers
 		
 		[HttpPost]
 		public String HelloWorld(String firstname, String lastname){
-			return "Hello " + firstname + " " + lastname;
+			return "Hola desarrollador " + firstname + " " + lastname;
 		}
     }
 }

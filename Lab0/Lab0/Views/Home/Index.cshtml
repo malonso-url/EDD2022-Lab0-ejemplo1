@@ -5,4 +5,12 @@
 <div class="text-center">
     <h1 class="display-4">Welcome URL 2022 desarrollador 1</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <section>
+        @using (Html.BeginForm("HelloWorld", "Home"))
+        {
+            <input type="text" name="firstname" /><br />
+            <input type="text" name="lastname" /><br />
+            <input type="submit" value="Click me" />
+        }
+    </section>
 </div>

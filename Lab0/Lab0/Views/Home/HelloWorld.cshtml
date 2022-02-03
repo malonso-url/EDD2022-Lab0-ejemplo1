@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "HelloWorld";
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Saludos</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+
+            <table class="table table-bordered table-striped">
+                <tr class="table-success">
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                </tr>
+                <tr>
+                    <td>@ViewBag.id</td>
+                    <td>@ViewBag.firstname</td>
+                    <td>@ViewBag.lastname</td>
+                </tr>
+            </table>
+
+
+
+        </div>
+    </div>
+</div>
+

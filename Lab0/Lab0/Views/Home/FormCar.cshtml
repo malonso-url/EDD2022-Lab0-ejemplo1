@@ -1,0 +1,40 @@
+﻿@model Lab0.Models.Automovil
+
+@{
+    ViewData["Title"] = "FormCar";
+}
+
+<h1>FormCar</h1>
+
+<h4>Automovil</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-controller="Home" asp-action="SaveCar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Placa" class="control-label"></label>
+                <input name="Placa" asp-for="Placa" class="form-control" placeholder="P123ABC" />
+                <span asp-validation-for="Placa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Marca" class="control-label"></label>
+                <input name="Marca" asp-for="Marca" class="form-control" placeholder="TOYOTA"/>
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Modelo" class="control-label"></label>
+                <input  name="Modelo" asp-for="Modelo" class="form-control" placeholder="2000"/>
+                <span asp-validation-for="Modelo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"  />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Home</a>
+</div>
+

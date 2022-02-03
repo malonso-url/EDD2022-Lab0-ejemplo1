@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "ShowCar";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Listado de Automoviles</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+
+            <table class="table table-bordered table-striped">
+                <tr class="table-success">
+                    <th>Placa</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                </tr>
+                @foreach (var auto in ViewData["autos"] as LinkedList<Automovil>)
+                {
+                    <tr>
+                        <td>@auto.Placa</td>
+                        <td>@auto.Marca</td>
+                        <td>@auto.Modelo</td>
+                    </tr>
+
+                }
+
+            </table>
+
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <a asp-action="Index">Back to Home</a>
+        </div>
+        <div>
+            <a asp-action="FormCar">Ingresar nuevo Auto</a>
+        </div>
+    </div>
+
+</div>
+
+
+

@@ -1,0 +1,23 @@
+﻿@model Automovil
+
+@{
+    ViewData["Title"] = "EnterData";
+   
+}
+
+<div class="container text-center">
+    <h1 class="display-4">Ingreso de datos de Automovil</h1>
+    <section>
+        @using (Html.BeginForm("SaveCar", "Home"))
+        {
+            @Html.DisplayNameFor(model => model.placa)
+            <input type="text" name="placa" class="form-control" /><br />
+            @Html.DisplayNameFor(model => model.marca)
+            <input type="text" name="marca" class="form-control" /><br />
+            @Html.DisplayNameFor(model => model.modelo)
+            <input type="number" name="modelo" class="form-control" /><br />
+            <input type="submit" value="Guardar" class="btn btn-primary" />
+        }
+    </section>
+</div>
+

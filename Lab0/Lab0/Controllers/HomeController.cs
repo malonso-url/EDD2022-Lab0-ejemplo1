@@ -11,6 +11,8 @@ namespace Lab0.Controllers
 {
     public class HomeController : Controller
     {
+        public static LinkedList<Automovil> automovils = new LinkedList<Automovil>();
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -42,5 +44,21 @@ namespace Lab0.Controllers
             ViewBag.id = (new Random(DateTime.Now.Millisecond)).Next(1000, 9999);
             return View();
 		}
+
+        public IActionResult EnterData()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SaveCar(String placa, String marca, int modelo) {
+            automovils.AddLast(new Automovil(placa, marca, modelo));
+            return View();
+        }
+
+        public IActionResult ListData() {
+            ViewData["autos"] = automovils;
+            return View();
+        }
     }
 }

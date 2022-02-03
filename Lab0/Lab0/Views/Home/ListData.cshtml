@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "ListData";
+}
+
+<h1>Listado de automoviles</h1>
+<table class="table table-bordered table-responsive table-striped">
+    <thead>
+        <tr>
+            <th>
+                Placa
+            </th>
+            <th>
+                Marca
+            </th>
+            <th>
+                Modelo
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewData["autos"] as LinkedList<Automovil>)
+        {
+
+            <tr>
+                <td>
+                    @item.placa
+                </td>
+                <td>
+                    @item.marca
+                </td>
+                <td>
+                    @item.modelo
+                </td>                
+            </tr>
+        }
+    </tbody>
+</table>

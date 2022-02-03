@@ -35,8 +35,12 @@ namespace Lab0.Controllers
         }
 		
 		[HttpPost]
-		public String HelloWorld(String firstname, String lastname){
-			return "Hi new developer " + firstname + " " + lastname;
+		public IActionResult HelloWorld(String firstname, String lastname){
+            ViewBag.greetings = "Hi new developer " + firstname + " " + lastname;
+            ViewBag.firstname = firstname;
+            ViewBag.lastname = lastname;
+            ViewBag.id = (new Random(DateTime.Now.Millisecond)).Next(1000, 9999);
+            return View();
 		}
     }
 }

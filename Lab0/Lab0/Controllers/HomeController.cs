@@ -11,8 +11,9 @@ namespace Lab0.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         public static LinkedList<Automovil> automovils = new LinkedList<Automovil>();
+
+        private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -57,7 +58,6 @@ namespace Lab0.Controllers
 
         public IActionResult ShowCar()
         {
-            
             ViewData["autos"] = automovils;
             return View();
         }

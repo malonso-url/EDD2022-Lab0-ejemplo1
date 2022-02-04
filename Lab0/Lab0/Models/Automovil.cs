@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Lab0.Models
 {
     public class Automovil
     {
+
         public Automovil(String Placa, String Marca, int Modelo) {
             this.Placa = Placa;
             this.Marca = Marca;
@@ -18,5 +20,6 @@ namespace Lab0.Models
         public string Marca { get; set; }
 
         public int Modelo { get; set; }
+
     }
 }

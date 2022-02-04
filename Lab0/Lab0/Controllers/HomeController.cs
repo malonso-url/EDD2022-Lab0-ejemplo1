@@ -57,6 +57,7 @@ namespace Lab0.Controllers
 
         public IActionResult ShowCar()
         {
+            
             ViewData["autos"] = automovils;
             return View();
         }

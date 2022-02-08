@@ -35,14 +35,14 @@ namespace Lab0.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-		
-		[HttpPost]
-		public IActionResult HelloWorld(String firstname, String lastname){
+
+        [HttpPost]
+        public IActionResult HelloWorld(String firstname, String lastname) {
             ViewBag.firstname = firstname;
             ViewBag.lastname = lastname;
             ViewBag.id = (new Random(DateTime.Now.Millisecond)).Next(1000, 9999);
             return View();
-		}
+        }
 
         public IActionResult FormCar()
         {
@@ -56,10 +56,30 @@ namespace Lab0.Controllers
             return View();
         }
 
-        public IActionResult ShowCar()
+        [HttpGet]
+        public IActionResult ShowCar(int lower)
         {
-            ViewData["autos"] = automovils;
+            
+
+            if (lower == 1)
+            {
+                LinkedList<Automovil> newList = new LinkedList<Automovil>();
+                for (int i = 0; i < automovils.Count; i++)
+                {
+                    String placa = automovils.ToArray<Automovil>()[i].Placa.ToLower();
+                    String marcaLower = automovils.ToArray<Automovil>()[i].Marca.ToLower();
+                    int modelo = automovils.ToArray<Automovil>()[i].Modelo;
+                    newList.AddLast(new Automovil(placa, marcaLower, modelo));
+                }
+                ViewData["autos"] = newList;
+            }
+            else {
+                ViewData["autos"] = automovils;
+            }
+
             return View();
         }
+
+
     }
 }

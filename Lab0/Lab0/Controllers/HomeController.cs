@@ -53,7 +53,8 @@ namespace Lab0.Controllers
 
         public IActionResult SaveCar(String Placa, String Marca, int Modelo) {
             Automovil nuevoAuto = new Automovil(Placa, Marca, Modelo);
-            automovils.AddLast(nuevoAuto);
+            automovils.AddLast(nuevoAuto); //Added to a normal linked list
+            listAutomovil.InsertAtEnd(nuevoAuto); //Added to list 
             ViewBag.savecarsuccess = "Auto con placa: " + Placa + " Guardado exitosamente ";
             return View();
         }
@@ -61,22 +62,36 @@ namespace Lab0.Controllers
         [HttpGet]
         public IActionResult ShowCar(int lower)
         {
-            
+
 
             if (lower == 1)
             {
-                LinkedList<Automovil> newList = new LinkedList<Automovil>();
+                /* LinkedList<Automovil> newList = new LinkedList<Automovil>();
+                 for (int i = 0; i < automovils.Count; i++)
+                 {
+                     String placa = automovils.ToArray<Automovil>()[i].Placa.ToLower();
+                     String marcaLower = automovils.ToArray<Automovil>()[i].Marca.ToLower();
+                     int modelo = automovils.ToArray<Automovil>()[i].Modelo;
+                     newList.AddLast(new Automovil(placa, marcaLower, modelo));
+                 }
+                 ViewData["autos"] = newList;*/
+                CustomLinkedList<Automovil> newList = new CustomLinkedList<Automovil>();
                 for (int i = 0; i < automovils.Count; i++)
                 {
                     String placa = automovils.ToArray<Automovil>()[i].Placa.ToLower();
                     String marcaLower = automovils.ToArray<Automovil>()[i].Marca.ToLower();
                     int modelo = automovils.ToArray<Automovil>()[i].Modelo;
-                    newList.AddLast(new Automovil(placa, marcaLower, modelo));
+                    newList.InsertAtEnd(new Automovil(placa, marcaLower, modelo));
                 }
                 ViewData["autos"] = newList;
             }
-            else {
-                ViewData["autos"] = automovils;
+            else if (lower == 2) //sending the custom list
+            {
+                ViewData["autos"] = listAutomovil;
+            }
+            else
+            {
+                ViewData["autos"] = listAutomovil;
             }
 
             return View();

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataStructures
 {
-    interface ICustomList<T>
+    public interface ICustomList<T>
     {
         /// <summary>
         /// Insert an element at the start of the list

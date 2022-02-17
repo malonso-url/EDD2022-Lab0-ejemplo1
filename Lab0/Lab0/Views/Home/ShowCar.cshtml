@@ -18,7 +18,7 @@
                     <th>Marca</th>
                     <th>Modelo</th>
                 </tr>
-               
+
                 @foreach (var auto in ViewData["autos"] as DataStructures.LinearStructures.CustomLinkedList<Automovil>)
                 {
                     <tr>
@@ -55,6 +55,18 @@
     <div class="row">
         <div class="col-12">
             <a asp-controller="Home" asp-action="ShowCar" asp-route-lower="2">Mostrar usando lista propia</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <a asp-controller="Home" asp-action="ShowCar" asp-route-lower="3">Ordenar por placa</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <a asp-controller="Home" asp-action="ShowCar" asp-route-lower="4">Ordenar por modelo</a>
         </div>
     </div>
 

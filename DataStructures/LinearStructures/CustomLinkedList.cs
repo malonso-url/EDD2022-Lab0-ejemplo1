@@ -1,11 +1,15 @@
-﻿using System;
+﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using DataStructures.ADT;
 
 namespace DataStructures.LinearStructures
 {
-    public class CustomLinkedList<T> : ICustomList<T>, IEnumerable<T>
+    public delegate void SortMethod();
+
+    public class CustomLinkedList<T> : ICustomList<T>, IEnumerable<T>, ISortable<T>
     {
         private int count;
         private Node<T> start;
@@ -28,7 +32,7 @@ namespace DataStructures.LinearStructures
                 {
                     return end.value;
                 }
-                else if ((index > 0) && (index == (Count() - 1)))
+                else if ((index > 0) && (index < (Count() - 1)))
                 {
                     Node<T> temp = start;
                     int i = 0;
@@ -240,5 +244,42 @@ namespace DataStructures.LinearStructures
                 node = node.next;
             }
         }
+
+        public void Sort(IComparer<T> comparer)
+        {
+            if (Count() <= 1) return;
+
+            Node<T> first = start;
+            Node<T> aElement = start;
+            Node<T> bElement = start;
+
+            for (int i = 0; i < Count() - 1; i++)
+            {
+                aElement = first;
+                for (int j = 0; j < Count() - 1; j++)
+                {
+                    bElement = aElement.next;
+                    if (comparer.Compare(aElement.value, bElement.value) > 0)
+                    {
+                        Swap(ref aElement, ref bElement);
+                    }
+                    aElement = aElement.next;
+                }
+            }
+        }
+
+        private void Swap(ref Node<T> a, ref Node<T> b)
+        {
+            T aux = b.value;
+            b.value = a.value;
+            a.value = aux;
+        }
+
+        public void SortUsingMethods(SortMethod preferedSortMethod) {
+            preferedSortMethod();
+        }
+
+       
     }
+
 }

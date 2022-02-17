@@ -89,12 +89,52 @@ namespace Lab0.Controllers
             {
                 ViewData["autos"] = listAutomovil;
             }
+            else if (lower == 3)
+            {
+                listAutomovil.Sort(new Lab0.Models.Comparadores.CompareAutoByPlacaAsc());
+                ViewData["autos"] = listAutomovil;
+            }
+            else if (lower == 4) 
+            {
+                listAutomovil.SortUsingMethods(SortUsingSelectionSort);
+                ViewData["autos"] = listAutomovil;
+            }
             else
             {
                 ViewData["autos"] = listAutomovil;
             }
 
             return View();
+        }
+
+        private void SortUsingSelectionSort () {
+            Lab0.Models.Comparadores.CompareAutoByModeloAsc myComparer = new Lab0.Models.Comparadores.CompareAutoByModeloAsc();
+            int min;
+
+            for (int index = 0; index < listAutomovil.Count() - 1; index++)
+            {
+                min = index;
+                for (int scan = index + 1; scan < listAutomovil.Count(); scan++)
+                {
+                    //if (myCompare.Compare(myArray[scan], myArray[min]) < 0)
+                    if (myComparer.Compare(listAutomovil.Get(scan), listAutomovil.Get(min)) < 0)
+                    {
+                        min = scan;
+                    }
+                }
+
+                //Doing the swap
+                Automovil aux = new Automovil(listAutomovil.Get(min).Placa, listAutomovil.Get(min).Marca, listAutomovil.Get(min).Modelo);
+
+                listAutomovil.Get(min).Placa = listAutomovil.Get(index).Placa;
+                listAutomovil.Get(min).Marca = listAutomovil.Get(index).Marca;
+                listAutomovil.Get(min).Modelo = listAutomovil.Get(index).Modelo;
+
+                listAutomovil.Get(index).Placa = aux.Placa;
+                listAutomovil.Get(index).Marca = aux.Marca;
+                listAutomovil.Get(index).Modelo = aux.Modelo;
+
+            }
         }
 
 

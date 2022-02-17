@@ -7,11 +7,13 @@ namespace DataStructuresTest
     public class ADTTests
     {
         [TestMethod]
-        public void CustomListInsertTest()
+        public void CustomListInsertAtStartTest()
         {
             CustomLinkedList<string> miLista = new CustomLinkedList<string>();
-            miLista.Insert("prueba");
+            miLista.InsertAtStart("prueba");
             Assert.AreEqual(1, miLista.Count());
         }
+
+
     }
 }

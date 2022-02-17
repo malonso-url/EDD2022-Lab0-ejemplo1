@@ -4,13 +4,19 @@ using System.Text;
 
 namespace DataStructures
 {
-    interface ICustomLinkedList<T>
+    interface ICustomList<T>
     {
         /// <summary>
-        /// Insert an element into the list 
+        /// Insert an element at the start of the list
+        /// </summary>
+        /// <param name="value">Data that will be added</param>
+        void InsertAtStart(T value);
+
+        /// <summary>
+        /// Insert an element at the end of the list
         /// </summary>
         /// <param name="value">The data</param>
-        void Insert(T value);
+        void InsertAtEnd(T value);
 
         /// <summary>
         /// Insert an element into the list in a specific position
@@ -23,7 +29,19 @@ namespace DataStructures
         /// Removes an element from the list
         /// </summary>
         /// <param name="index">Position of the element</param>
-        void Delete(int index);
+        T Delete(int index);
+
+        /// <summary>
+        /// Delete an element at the start of the list
+        /// </summary>
+        /// <returns>The deleted element</returns>
+        T DeleteAtStart();
+
+        /// <summary>
+        /// Delete an element ath the end of the list
+        /// </summary>
+        /// <returns>The deleted element</returns>
+        T DeleteAtEnd();
 
         /// <summary>
         /// Returns an element from the list without remove

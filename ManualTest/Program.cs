@@ -9,9 +9,9 @@ namespace ManualTest
         {
 
             CustomLinkedList<string> miLista = new CustomLinkedList<string>();
-            miLista.Insert("prueba 1");
-            miLista.Insert("prueba 2");
-            miLista.Insert("prueba 3");
+            miLista.InsertAtStart("prueba 1");
+            miLista.InsertAtStart("prueba 2");
+            miLista.InsertAtStart("prueba 3");
 
             foreach (var item in miLista) {
                 Console.WriteLine(item);

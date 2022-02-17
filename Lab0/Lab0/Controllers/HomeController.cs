@@ -94,9 +94,19 @@ namespace Lab0.Controllers
                 listAutomovil.Sort(new Lab0.Models.Comparadores.CompareAutoByPlacaAsc());
                 ViewData["autos"] = listAutomovil;
             }
-            else if (lower == 4) 
+            else if (lower == 4)
             {
                 listAutomovil.SortUsingMethods(SortUsingSelectionSort);
+                ViewData["autos"] = listAutomovil;
+            }
+            else if (lower == 5)
+            {
+                listAutomovil.Sort(new Lab0.Models.Comparadores.CompareAutoByMarcaAsc());
+                ViewData["autos"] = listAutomovil;
+            }
+            else if (lower == 6)
+            {
+                listAutomovil.Sort(new Lab0.Models.Comparadores.CompareAutoByMarcaDesc());
                 ViewData["autos"] = listAutomovil;
             }
             else

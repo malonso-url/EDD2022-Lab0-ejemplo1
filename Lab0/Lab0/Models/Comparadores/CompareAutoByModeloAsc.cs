@@ -10,6 +10,7 @@ namespace Lab0.Models.Comparadores
     {
         public int Compare(Automovil x, Automovil y)
         {
+            
             if (x.Modelo == y.Modelo)
             {
                 return 0;

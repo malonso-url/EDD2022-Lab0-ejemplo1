@@ -10,7 +10,7 @@ namespace DataStructures.ADT
 {
     interface IBinarySearchTree<K, V>
     {
-        void Insert(V value);
+        void Insert(K key, V value);
 
         V Search(K key);
 

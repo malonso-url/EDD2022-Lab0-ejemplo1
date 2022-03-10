@@ -6,11 +6,10 @@ namespace DataStructures.TreeStructures
 {
     class TreeNode<K, V>
     {
-        private GetKeyDelegate<K, V> getKeyFunction;
-
-        public TreeNode(GetKeyDelegate<K, V> getKeyFunction, V value) {
-            this.getKeyFunction = getKeyFunction;
-            this.key = getKeyFunction(value);
+        public TreeNode(K key, V value)
+        {
+            this.key = key;
+            this.value = value;
             this.left = null;
             this.right = null;
             this.parent = null;

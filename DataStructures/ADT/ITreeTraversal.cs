@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataStructures.ADT
 {
-    interface ITreeTraversal<V>
+    public interface ITreeTraversal<V>
     {
         void Walk(V value);
     }

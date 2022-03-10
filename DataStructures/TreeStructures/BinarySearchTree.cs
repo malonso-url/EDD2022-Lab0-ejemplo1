@@ -5,16 +5,14 @@ using DataStructures.ADT;
 
 namespace DataStructures.TreeStructures
 {
-    class BinarySearchTree<K, V> : IBinarySearchTree<K, V> 
+    public class BinarySearchTree<K, V> : IBinarySearchTree<K, V> 
     {
         //Variables for implementation
         private TreeNode<K, V> root;
-        private GetKeyDelegate<K, V> getKeyFunction;
         private CompareKeysDelegate<K> compareKeys;
         private int count;
 
-        public BinarySearchTree(GetKeyDelegate<K, V> getKeyFunction, CompareKeysDelegate<K> compareKeys) {
-            this.getKeyFunction = getKeyFunction;
+        public BinarySearchTree(CompareKeysDelegate<K> compareKeys) {
             this.compareKeys = compareKeys;
             root = null;
             count = 0;
@@ -53,13 +51,16 @@ namespace DataStructures.TreeStructures
                         //Assigning the right side
                         if (compareKeys(root.right.key, leftOfTheRights.key) != 0) //only in case the leftOfTheRights is different from the root's right
                         {
+                            //Left node of the parent should be null
+                            leftOfTheRights.parent.left = null;
+
                             TreeNode<K, V> newRootRight = leftOfTheRights;
                             while (newRootRight.right != null)
                             {
                                 newRootRight = newRootRight.right;
                             }
 
-                            newRootRight.right = root.right.right;
+                            newRootRight.right = root.right;
                             if (newRootRight.right != null)
                                 newRootRight.right.parent = newRootRight;
                         }
@@ -90,13 +91,16 @@ namespace DataStructures.TreeStructures
                         //Assigning the left side
                         if (compareKeys(root.left.key, rightOfTheLefts.key) != 0) //only in case the rightOfTheLefts is different from the root's left
                         {
+                            //The parent right is null since the node now is the root
+                            rightOfTheLefts.parent.right = null;
+
                             TreeNode<K, V> newRootLeft = rightOfTheLefts;
                             while (newRootLeft.left != null)
                             {
                                 newRootLeft = newRootLeft.left;
                             }
 
-                            newRootLeft.left = root.left.left;
+                            newRootLeft.left = root.left;
                             if (newRootLeft.left != null)
                                 newRootLeft.left.parent = newRootLeft;
                         }
@@ -146,15 +150,15 @@ namespace DataStructures.TreeStructures
             internalInOrder(traversal, root);
         }
 
-        public void Insert(V value)
+        public void Insert(K key, V value)
         {
             if (!IsEmpty()) //if the tree is not empty then need to start the internal search
             {
-                internalInsertion(root, value, getKeyFunction(value));
+                internalInsertion(root, value, key);
             }
             else //if is empty then new node is the root 
             {
-                TreeNode<K, V> newNode = new TreeNode<K, V>(getKeyFunction, value);
+                TreeNode<K, V> newNode = new TreeNode<K, V>(key, value);
                 root = newNode;
                 count++;
             }
@@ -233,13 +237,15 @@ namespace DataStructures.TreeStructures
                             //Assigning the right side
                             if (compareKeys(actual.right.key, leftOfTheRights.key) != 0) //only in case the leftOfTheRights is different from the root's right
                             {
+                                leftOfTheRights.parent.left = null;
+
                                 TreeNode<K, V> newRootRight = leftOfTheRights;
                                 while (newRootRight.right != null)
                                 {
                                     newRootRight = newRootRight.right;
                                 }
 
-                                newRootRight.right = actual.right.right;
+                                newRootRight.right = actual.right;
                                 if (newRootRight.right != null)
                                     newRootRight.right.parent = newRootRight;
                             }
@@ -269,13 +275,15 @@ namespace DataStructures.TreeStructures
                             //Assigning the left side
                             if (compareKeys(actual.left.key, rightOfTheLefts.key) != 0) //only in case the rightOfTheLefts is different from the root's left
                             {
+                                rightOfTheLefts.parent.right = null;
+
                                 TreeNode<K, V> newRootLeft = rightOfTheLefts;
                                 while (newRootLeft.left != null)
                                 {
                                     newRootLeft = newRootLeft.left;
                                 }
 
-                                newRootLeft.left = actual.left.left;
+                                newRootLeft.left = actual.left;
                                 if (newRootLeft.left != null)
                                     newRootLeft.left.parent = newRootLeft;
                             }
@@ -350,7 +358,7 @@ namespace DataStructures.TreeStructures
             {
                 if (actual.left == null) //if left side is null then insert
                 {
-                    actual.left = new TreeNode<K, V>(getKeyFunction, value);
+                    actual.left = new TreeNode<K, V>(key, value);
                     actual.left.parent = actual;
                     count++;
                 }
@@ -364,7 +372,7 @@ namespace DataStructures.TreeStructures
 
                 if (actual.right == null) //if right side is null then insert
                 {
-                    actual.right = new TreeNode<K, V>(getKeyFunction, value);
+                    actual.right = new TreeNode<K, V>(key, value);
                     actual.right.parent = actual;
                     count++;
                 }
@@ -372,7 +380,6 @@ namespace DataStructures.TreeStructures
                 {
                     internalInsertion(actual.right, value, key);
                 }
-
             }
         }
 

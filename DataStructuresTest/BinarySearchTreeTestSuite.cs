@@ -103,6 +103,36 @@ namespace DataStructuresTest
         }
 
         [TestMethod]
+        public void BSTPostOrderWaltTest()
+        {
+            BinarySearchTree<int, string> myBST = new BinarySearchTree<int, string>(CompareNumbers);
+            Recorrido<String> miRecorrido = new Recorrido<String>();
+
+            myBST.Insert(50, "50");
+            myBST.Insert(10, "10");
+            myBST.Insert(90, "90");
+            myBST.Insert(5, "5");
+            myBST.Insert(25, "25");
+            myBST.Insert(100, "100");
+            myBST.Insert(80, "80");
+            myBST.Insert(75, "75");
+            myBST.Insert(15, "15");
+
+            myBST.PostOrder(miRecorrido);
+
+            Assert.AreEqual("5", miRecorrido.listado.ToArray()[0]);
+            Assert.AreEqual("15", miRecorrido.listado.ToArray()[1]);
+            Assert.AreEqual("25", miRecorrido.listado.ToArray()[2]);
+            Assert.AreEqual("10", miRecorrido.listado.ToArray()[3]);
+            Assert.AreEqual("75", miRecorrido.listado.ToArray()[4]);
+            Assert.AreEqual("80", miRecorrido.listado.ToArray()[5]);
+            Assert.AreEqual("100", miRecorrido.listado.ToArray()[6]);
+            Assert.AreEqual("90", miRecorrido.listado.ToArray()[7]);
+            Assert.AreEqual("50", miRecorrido.listado.ToArray()[8]);
+
+        }
+
+        [TestMethod]
         public void BSTSearchElementTest()
         {
             BinarySearchTree<int, string> myBST = new BinarySearchTree<int, string>(CompareNumbers);

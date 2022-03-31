@@ -133,6 +133,22 @@ namespace DataStructuresTest
         }
 
         [TestMethod]
+        public void NormalListTest()
+        {
+            List<int> miList = new List<int>();
+
+            miList.Insert(0, 1);
+            miList.Insert(0, 2);
+            miList.Insert(0, 3);
+            miList.Insert(0, 4);
+
+            Assert.AreEqual(4, miList[0]);
+            Assert.AreEqual(3, miList[1]);
+            Assert.AreEqual(2, miList[2]);
+            Assert.AreEqual(1, miList[3]);
+        }
+
+            [TestMethod]
         public void BSTSearchElementTest()
         {
             BinarySearchTree<int, string> myBST = new BinarySearchTree<int, string>(CompareNumbers);

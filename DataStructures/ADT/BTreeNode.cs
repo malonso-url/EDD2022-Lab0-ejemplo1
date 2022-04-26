@@ -11,7 +11,6 @@ namespace DataStructures.ADT
         List<BTreeNode<K, V>> childs { get; set; }
         BTreeNode<K, V> parent { get; set; }
         int minimumDegree { get; set; }
-
         int maximumDegree { get; set; }
         int currentKeysSize { get; set; }
         bool isLeaf { get; set; }
